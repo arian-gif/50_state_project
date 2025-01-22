@@ -20,7 +20,7 @@ states = data.state.to_list()
 while len(guessed_states) < 50:
     answer_state = screen.textinput(title=f"{len(guessed_states)}/50 States Correct", prompt="What's another state's name?")
 
-    if not answer_state or answer_state.lower() == "exit":
+    if answer_state.lower() == "exit":
         break
 
     answer_state = answer_state.title()
@@ -28,7 +28,7 @@ while len(guessed_states) < 50:
         guessed_states.append(answer_state)
 
         state_data = data[data.state == answer_state]
-        writer.goto(int(state_data.x), int(state_data.y))
+        writer.goto(int(state_data.x.item()), int(state_data.y.item()))
         writer.write(answer_state)
 
 
